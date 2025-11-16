@@ -1,0 +1,8 @@
+#@Archivos en diferente formato 
+
+Herramientas utilizadas:
+- StarUML v7.0.0 (Diagrama de Casos de uso)
+- Draw.io v28.2.5 (Diagrama de clases)
+- ERStudio v18.1 (Modelo logico de la base de datos SQL)
+
+Esta nota es solamente una aclaracion sobre el uso de diferentes herramientas para el diseno de los diagramas y modelos que representan la estructuctura del sistema Zapstock, el motivo es el uso de licencias gratuitas para el desarrollo de este proyecto, por lo cual al estar frente a ciertas limitaciones impuestas por StarUML he optado por utilizar otras alternativas, dando como resultado los 3 archivos editables contenidos en esta carpeta.
