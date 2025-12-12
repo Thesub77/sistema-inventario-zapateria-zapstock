@@ -1,0 +1,63 @@
+# Maven build artifacts
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Java compiled classes
+*.class
+
+# Log files
+*.log
+logs/
+
+# Temp and backup files
+*~
+*.tmp
+*.bak
+*.swp
+*.jar (if not source jars)
+*.war
+*.ear
+
+# IDE: NetBeans specific
+nb-configuration.xml
+nbactions.xml
+nbproject/private/
+.nb-gradle/
+catalog.xml
+.idea/  # If you switch to IntelliJ later
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor/IDE temp files
+.vscode/
+*.iml  # IntelliJ modules
+
+# Local config files (e.g., dev properties with secrets)
+*.properties (if local, e.g., application-dev.properties)
+*.yml (if sensitive)
+
+# Database dumps or local DB files (if any; MySQL is external, but just in case)
+*.sql
+*.dump
+
+# Other common ignores
+.idea/
+.svn/
+.gitattributes
+.gitkeep
+
+# If you have binaries or large files
+bin/
+out/
