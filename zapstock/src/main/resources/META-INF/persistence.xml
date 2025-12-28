@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<persistence
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ns1="https://jakarta.ee/xml/ns/persistence"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+    version="3.0">
+    <persistence-unit name="zapstockPU" transaction-type="RESOURCE_LOCAL">
+        <!-- Entidades -->
+        <class>com.thesub77.zapstock.model.Categoria</class>
+        
+
+        <properties>
+            <!-- Conexión a MySQL: Ajusta URL, user, pass -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://dummy"/>
+            <property name="jakarta.persistence.jdbc.user" value="dummy"/>
+            <property name="jakarta.persistence.jdbc.password" value="dummy"/> <!-- Cambiar despues a un archivo externo -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- Hibernate configs -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>  <!-- 'create' para primera vez o 'update' -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
