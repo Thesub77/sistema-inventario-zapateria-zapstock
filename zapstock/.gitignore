@@ -61,3 +61,6 @@ Desktop.ini
 # If you have binaries or large files
 bin/
 out/
+
+# Ignorar credenciales de BD
+src/main/resources/db.properties
