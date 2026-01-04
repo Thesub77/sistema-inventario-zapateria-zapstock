@@ -71,7 +71,6 @@ public class Categoria {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
 
     // Para comparaciones logicas y caching
     @Override

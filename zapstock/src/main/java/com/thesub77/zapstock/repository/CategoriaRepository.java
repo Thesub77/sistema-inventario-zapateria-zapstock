@@ -63,11 +63,11 @@ public class CategoriaRepository {
             em.close(); // Cerrando la conexion
         }
     }
-    
+
     public Categoria buscarCategoriaPorNombre(String nombre) {
         EntityManager em = DatabaseUtil.getEntityManager();
         try {
-            return em.createQuery("SELECT * FROM Categoria c WHERE c.nombreCategoria = :nombre", Categoria.class)
+            return em.createQuery("SELECT c FROM Categoria c WHERE c.nombreCategoria = :nombre", Categoria.class)
                     .setParameter("nombre", nombre)
                     .getSingleResult();
         } catch (NoResultException nre) {
@@ -91,7 +91,7 @@ public class CategoriaRepository {
         try {
             em.getTransaction().begin();
 
-            Categoria busqueda = em.createQuery("SELECT * FROM Categoria c WHERE c.nombreCategoria = :nombre", Categoria.class)
+            Categoria busqueda = em.createQuery("SELECT c FROM Categoria c WHERE c.nombreCategoria = :nombre", Categoria.class)
                     .setParameter("nombre", nombre)
                     .getSingleResult();
 
@@ -114,6 +114,5 @@ public class CategoriaRepository {
         }
 
     }
-    
-    
+
 }
