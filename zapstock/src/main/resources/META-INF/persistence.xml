@@ -9,6 +9,7 @@
     <persistence-unit name="zapstockPU" transaction-type="RESOURCE_LOCAL">
         <!-- Entidades -->
         <class>com.thesub77.zapstock.model.Categoria</class>
+        <class>com.thesub77.zapstock.model.Proveedor</class>
         
 
         <properties>
