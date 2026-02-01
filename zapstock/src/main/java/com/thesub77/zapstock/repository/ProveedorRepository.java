@@ -42,6 +42,13 @@ public class ProveedorRepository {
 
         try {
             em.getTransaction().begin();
+            
+            // Verificar existencia y estado antes de actualizar
+            Proveedor verificarExistencia = em.find(Proveedor.class, proveedorActualizado.getIdProveedor());
+            if (verificarExistencia == null || !verificarExistencia.isEstado()) {
+                throw new EntityNotFoundException("Error al actualizar: Proveedor no encontrado");
+            }
+            
             em.merge(proveedorActualizado);
             em.getTransaction().commit();
             System.out.println("Se ha actualizado el proveedor: " + proveedorActualizado.getNombreEmpresa());
@@ -63,7 +70,7 @@ public class ProveedorRepository {
         try {
             Proveedor prov = em.find(Proveedor.class, id);
 
-            if (prov == null) {
+            if (prov == null || !prov.isEstado()) {
                 throw new EntityNotFoundException("Proveedor con ID " + id + " no encontrado");
             }
 
@@ -78,7 +85,7 @@ public class ProveedorRepository {
 
         try {
 
-            return em.createQuery("SELECT p FROM Proveedor p WHERE p.nombreEmpresa = :nombre", Proveedor.class)
+            return em.createQuery("SELECT p FROM Proveedor p WHERE p.nombreEmpresa = :nombre AND p.estado = true", Proveedor.class)
                     .setParameter("nombre", nombreProveedor)
                     .getSingleResult();
 
@@ -107,7 +114,7 @@ public class ProveedorRepository {
 
             em.getTransaction().begin();
 
-            Proveedor prov = em.createQuery("SELECT p FROM Proveedor WHERE p.nombreEmpresa = :nombreProveedor", Proveedor.class)
+            Proveedor prov = em.createQuery("SELECT p FROM Proveedor p WHERE p.nombreEmpresa = :nombreProveedor AND p.estado = true", Proveedor.class)
                     .setParameter("nombreProveedor", nombreProveedor)
                     .getSingleResult();
 
