@@ -10,6 +10,9 @@
         <!-- Entidades -->
         <class>com.thesub77.zapstock.model.Categoria</class>
         <class>com.thesub77.zapstock.model.Proveedor</class>
+        <class>com.thesub77.zapstock.model.Rol</class>
+        <class>com.thesub77.zapstock.model.Privilegio</class>
+        <class>com.thesub77.zapstock.model.Producto</class>
         
 
         <properties>
