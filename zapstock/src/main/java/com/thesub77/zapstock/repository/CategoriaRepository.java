@@ -39,6 +39,13 @@ public class CategoriaRepository {
 
         try {
             em.getTransaction().begin();
+
+            // Verificar existencia y estado antes de actualizar
+            Categoria verificarExistencia = em.find(Categoria.class, categoriaActualizada.getIdCategoria());
+            if (verificarExistencia == null || !verificarExistencia.isEstado()) {
+                throw new EntityNotFoundException("Error al actualizar: Categoría no encontrada");
+            }
+
             em.merge(categoriaActualizada);
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -55,7 +62,7 @@ public class CategoriaRepository {
         EntityManager em = DatabaseUtil.getEntityManager();
         try {
             Categoria categoria = em.find(Categoria.class, id);
-            if (categoria == null) {
+            if (categoria == null || !categoria.isEstado()) {
                 throw new EntityNotFoundException("Categoría con ID " + id + " no encontrada");
             }
             return categoria;
@@ -67,7 +74,7 @@ public class CategoriaRepository {
     public Categoria buscarCategoriaPorNombre(String nombre) {
         EntityManager em = DatabaseUtil.getEntityManager();
         try {
-            return em.createQuery("SELECT c FROM Categoria c WHERE c.nombreCategoria = :nombre", Categoria.class)
+            return em.createQuery("SELECT c FROM Categoria c WHERE c.nombreCategoria = :nombre AND c.estado = true", Categoria.class)
                     .setParameter("nombre", nombre)
                     .getSingleResult();
         } catch (NoResultException nre) {
@@ -80,7 +87,7 @@ public class CategoriaRepository {
     public List<Categoria> listarCategorias() {
         EntityManager em = DatabaseUtil.getEntityManager();
         try {
-            return em.createQuery("SELECT c FROM Categoria c WHERE estado = true", Categoria.class).getResultList();
+            return em.createQuery("SELECT c FROM Categoria c WHERE c.estado = true", Categoria.class).getResultList();
         } finally {
             em.close(); // Cerrando la conexion
         }
@@ -91,7 +98,7 @@ public class CategoriaRepository {
         try {
             em.getTransaction().begin();
 
-            Categoria busqueda = em.createQuery("SELECT c FROM Categoria c WHERE c.nombreCategoria = :nombre", Categoria.class)
+            Categoria busqueda = em.createQuery("SELECT c FROM Categoria c WHERE c.nombreCategoria = :nombre AND c.estado = true", Categoria.class)
                     .setParameter("nombre", nombre)
                     .getSingleResult();
 

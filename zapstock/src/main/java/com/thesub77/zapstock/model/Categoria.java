@@ -64,7 +64,7 @@ public class Categoria {
         this.descripcionCategoria = descripcionCategoria;
     }
 
-    public boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
