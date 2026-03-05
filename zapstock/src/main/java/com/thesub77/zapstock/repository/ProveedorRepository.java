@@ -1,6 +1,6 @@
 /*
  * @author Douglas Quiroz (@thesub77)
- * @proyect_name Zapstock
+ * @project_name Zapstock
  */
 package com.thesub77.zapstock.repository;
 
@@ -10,7 +10,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import java.util.List;
-import org.hibernate.resource.beans.container.internal.NotYetReadyException;
 
 /**
  *
@@ -42,13 +41,13 @@ public class ProveedorRepository {
 
         try {
             em.getTransaction().begin();
-            
+
             // Verificar existencia y estado antes de actualizar
             Proveedor verificarExistencia = em.find(Proveedor.class, proveedorActualizado.getIdProveedor());
             if (verificarExistencia == null || !verificarExistencia.isEstado()) {
                 throw new EntityNotFoundException("Error al actualizar: Proveedor no encontrado");
             }
-            
+
             em.merge(proveedorActualizado);
             em.getTransaction().commit();
             System.out.println("Se ha actualizado el proveedor: " + proveedorActualizado.getNombreEmpresa());
@@ -64,7 +63,7 @@ public class ProveedorRepository {
         }
     }
 
-    public Proveedor buscarProveedorPorId(long id) {
+    public Proveedor buscarProveedorPorId(Long id) {
         EntityManager em = DatabaseUtil.getEntityManager();
 
         try {

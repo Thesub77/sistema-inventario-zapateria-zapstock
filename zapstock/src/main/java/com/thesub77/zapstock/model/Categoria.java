@@ -1,6 +1,6 @@
 /*
  * @author Douglas Quiroz (@thesub77)
- * @proyect_name Zapstock
+ * @project_name Zapstock
  */
 package com.thesub77.zapstock.model;
 
@@ -17,7 +17,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCategoria")
-    private long idCategoria;
+    private Long idCategoria;
 
     @Column(name = "nombreCategoria", length = 24, unique = true, nullable = false)
     private String nombreCategoria;

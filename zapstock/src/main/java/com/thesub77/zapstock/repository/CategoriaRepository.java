@@ -1,6 +1,6 @@
 /*
  * @author Douglas Quiroz (@thesub77)
- * @proyect_name Zapstock
+ * @project_name Zapstock
  */
 package com.thesub77.zapstock.repository;
 
@@ -58,7 +58,7 @@ public class CategoriaRepository {
         }
     }
 
-    public Categoria buscarCategoriaPorId(long id) {
+    public Categoria buscarCategoriaPorId(Long id) {
         EntityManager em = DatabaseUtil.getEntityManager();
         try {
             Categoria categoria = em.find(Categoria.class, id);
