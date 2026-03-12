@@ -1,10 +1,11 @@
 /*
  * @author Douglas Quiroz (@thesub77)
- * @proyect_name Zapstock
+ * @project_name Zapstock
  */
 package com.thesub77.zapstock.repository;
 
 import com.thesub77.zapstock.model.Rol;
+import com.thesub77.zapstock.model.RolPrivilegio;
 import com.thesub77.zapstock.util.DatabaseUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -41,13 +42,13 @@ public class RolRepository {
 
         try {
             em.getTransaction().begin();
-            
+
             // Verificar existencia y estado antes de actualizar
             Rol verificarExistencia = em.find(Rol.class, rolActualizado.getIdRol());
             if (verificarExistencia == null || !verificarExistencia.isEstado()) {
                 throw new EntityNotFoundException("Error al actualizar: Rol no encontrada");
             }
-            
+
             em.merge(rolActualizado);
             em.getTransaction().commit();
             System.out.println("Se ha actualizado el rol: " + rolActualizado.getNombreRol());
@@ -62,7 +63,7 @@ public class RolRepository {
         }
     }
 
-    public Rol buscarRolPorId(long id) {
+    public Rol buscarRolPorId(Long id) {
         EntityManager em = DatabaseUtil.getEntityManager();
 
         try {
@@ -116,6 +117,10 @@ public class RolRepository {
                     .getSingleResult();
 
             rol.setEstado(false);
+
+            for (RolPrivilegio rp : rol.getPrivilegios()) {
+                rp.setEstado(false);
+            }
 
             em.getTransaction().commit();
 

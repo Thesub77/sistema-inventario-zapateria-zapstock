@@ -1,10 +1,11 @@
 /*
  * @author Douglas Quiroz (@thesub77)
- * @proyect_name Zapstock
+ * @project_name Zapstock
  */
 package com.thesub77.zapstock.repository;
 
 import com.thesub77.zapstock.model.Privilegio;
+import com.thesub77.zapstock.model.RolPrivilegio;
 import com.thesub77.zapstock.util.DatabaseUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -41,13 +42,13 @@ public class PrivilegioRepository {
 
         try {
             em.getTransaction().begin();
-            
+
             // Verificar existencia y estado antes de actualizar
             Privilegio verificarExistencia = em.find(Privilegio.class, privilegioActualizado.getIdPrivilegio());
             if (verificarExistencia == null || !verificarExistencia.isEstado()) {
                 throw new EntityNotFoundException("Error al actualizar: Privilegio no encontrado");
             }
-            
+
             em.merge(privilegioActualizado);
             em.getTransaction().commit();
             System.out.println("Se ha actualizado el privilegio " + privilegioActualizado.getNombrePrivilegio());
@@ -64,7 +65,7 @@ public class PrivilegioRepository {
     }
 
     // !!! Modificar para que no mande a traer privilegios eliminados
-    public Privilegio buscarPrivilegioPorId(long id) {
+    public Privilegio buscarPrivilegioPorId(Long id) {
         EntityManager em = DatabaseUtil.getEntityManager();
 
         try {
@@ -118,6 +119,10 @@ public class PrivilegioRepository {
                     .getSingleResult();
 
             privilegio.setEstado(false);
+
+            for (RolPrivilegio rp : privilegio.getRoles()) {
+                rp.setEstado(false);
+            }
 
             em.getTransaction().commit();
 
