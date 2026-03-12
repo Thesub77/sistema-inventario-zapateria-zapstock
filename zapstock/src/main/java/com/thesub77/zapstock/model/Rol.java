@@ -1,10 +1,12 @@
 /*
  * @author Douglas Quiroz (@thesub77)
- * @proyect_name Zapstock
+ * @project_name Zapstock
  */
 package com.thesub77.zapstock.model;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -17,7 +19,10 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRol")
-    private long idRol;
+    private Long idRol;
+
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RolPrivilegio> privilegios = new ArrayList<>();
 
     @Column(name = "nombreRol", unique = true, length = 16, nullable = false)
     private String nombreRol;
@@ -34,8 +39,9 @@ public class Rol {
     }
 
     // Constructor completo para entrada manual
-    public Rol(String nombreRol, String descripcionRol, boolean estado) {
+    public Rol(String nombreRol, List<RolPrivilegio> privilegios, String descripcionRol, boolean estado) {
         this.nombreRol = nombreRol;
+        this.privilegios = privilegios;
         this.descripcionRol = descripcionRol;
         this.estado = estado;
     }
@@ -47,6 +53,14 @@ public class Rol {
 
     public void setIdRol(long idRol) {
         this.idRol = idRol;
+    }
+
+    public List<RolPrivilegio> getPrivilegios() {
+        return privilegios;
+    }
+
+    public void setPrivilegios(List<RolPrivilegio> privilegios) {
+        this.privilegios = privilegios;
     }
 
     public String getNombreRol() {
