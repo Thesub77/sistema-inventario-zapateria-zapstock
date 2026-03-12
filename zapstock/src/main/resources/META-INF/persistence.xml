@@ -13,6 +13,14 @@
         <class>com.thesub77.zapstock.model.Rol</class>
         <class>com.thesub77.zapstock.model.Privilegio</class>
         <class>com.thesub77.zapstock.model.Producto</class>
+        <class>com.thesub77.zapstock.model.VarianteProducto</class>
+        <class>com.thesub77.zapstock.model.OrdenCompra</class>
+        <class>com.thesub77.zapstock.model.DetalleOrdenCompra</class>
+        <class>com.thesub77.zapstock.model.RolPrivilegio</class>
+        <class>com.thesub77.zapstock.model.Usuario</class>
+        <class>com.thesub77.zapstock.model.Reporte</class>
+        <class>com.thesub77.zapstock.model.Venta</class>
+        <class>com.thesub77.zapstock.model.DetalleVenta</class>
         
 
         <properties>
