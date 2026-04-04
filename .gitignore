@@ -63,7 +63,7 @@ bin/
 out/
 
 # Ignorar credenciales de BD
-src/main/resources/db.properties
+*src/main/resources/db.properties
 
 # Archivos temporales de Draw.io
 *.drawio.bkp
